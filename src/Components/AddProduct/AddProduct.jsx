@@ -4,7 +4,6 @@ import './AddProduct.css';
 
 function AddProductForm() {
   const [products, setProducts] = useState([]);
-  console.log(products);
   const [formValues, setFormValues] = useState([
     {
       pCode: '',
@@ -12,17 +11,21 @@ function AddProductForm() {
       quantity: 0,
     },
   ]);
+
+  // Creating form field
   const getAddForm = () => {
     let joined = formValues.concat(proObj);
     setFormValues(joined);
-    console.log(formValues);
   };
+
+  // A basic object of a product
   let proObj = {
     pCode: '',
     pName: '',
     quantity: 0,
   };
 
+  // Function for handle form data
   const handleChange = (e, index) => {
     const values = [...formValues];
     values[index][e.target.name] = e.target.value;
@@ -33,7 +36,7 @@ function AddProductForm() {
   const addProduct = (e) => {
     try {
       e.preventDefault();
-      console.log(products, 'pro');
+      // console.log(products, 'pro');
       if (products?.length > 0) {
         let joined = products.concat(formValues);
         localStorage.setItem('products', JSON.stringify(joined));
@@ -48,9 +51,12 @@ function AddProductForm() {
       console.log(error);
     }
   };
+
   useEffect(() => {
+    // Get products from local storage
     setProducts(JSON.parse(localStorage.getItem('products')));
   }, [formValues]);
+
   return (
     <div className='container main-div'>
       <div className='shadow form-container '>
