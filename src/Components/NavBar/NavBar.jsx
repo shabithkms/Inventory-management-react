@@ -13,7 +13,7 @@ function NavBar() {
   return (
     <Navbar expand='lg' className='navbar-main'>
       <Container>
-        <Navbar.Brand className='me-5 pe-5 navbar-header'>Products</Navbar.Brand>
+        <Navbar.Brand className='me-5 pe-5 navbar-header'><h2>Inventory</h2></Navbar.Brand>
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>
           <Nav className='me-auto'>
