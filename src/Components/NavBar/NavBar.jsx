@@ -7,7 +7,6 @@ import { change_currentTab } from '../../Redux/tabSlice';
 function NavBar() {
   const dispatch = useDispatch();
   const changeTab = (tab) => {
-    console.log(tab);
     dispatch(change_currentTab(tab));
   };
   return (

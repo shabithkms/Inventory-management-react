@@ -10,12 +10,6 @@ function RemoveProductForm() {
     },
   ]);
 
-  // Creating form field
-  const getAddForm = () => {
-    let joined = formValues.concat(proObj);
-    setFormValues(joined);
-  };
-
   // A basic object of a product
   let proObj = {
     pCode: '',
@@ -34,23 +28,20 @@ function RemoveProductForm() {
     let codes = [];
     try {
       e.preventDefault();
-      console.log(formValues);
-      for (let key in formValues) {
-        // console.log('hi');
-        codes.push(formValues[key].pCode);
-        // console.log(codes);
-      }
-      let newProducts = products.filter((item) => {
-        for (let key in codes) {
-          if (item.pCode !== codes[key]) {
-            return item;
+      products.filter((item, index) => {
+        if (item.pCode === codes[0]) {
+          if (item.quantity < formValues[0].quantity) {
+            products.splice(index, 1);
+            setFormValues([proObj]);
+            toast.success('Product removed');
+          } else {
+            item.quantity = item.quantity - formValues[0].quantity;
+            toast.success('Stock reduced');
+            setFormValues([proObj]);
           }
-        }
+        } 
       });
-      localStorage.setItem('products', JSON.stringify(newProducts));
-      console.log(newProducts);
-      setFormValues([proObj]);
-      toast.success('product removed');
+      localStorage.setItem('products', JSON.stringify(products));
     } catch (error) {
       console.log(error);
     }
@@ -66,20 +57,16 @@ function RemoveProductForm() {
       <div className='shadow form-container '>
         <h1 className='text-center'>Remove product</h1>
         <div className='add-form'>
-          <button onClick={getAddForm} className='btn mt-2 btn-danger'>
-            Add field
-          </button>
-
           <form onSubmit={removeProduct}>
             <table>
               <thead></thead>
               <tbody>
                 {formValues.map((value, index) => {
                   return (
-                    <tr key={value}>
+                    <tr key={index}>
                       <div className='form-row '>
                         <input
-                          type='text'
+                          type='number'
                           placeholder='Product code'
                           name='pCode'
                           className='form-control'

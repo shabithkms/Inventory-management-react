@@ -5,17 +5,12 @@ function ListProduct() {
   const [products, setProducts] = useState([]);
   const [noProducts, setNoProducts] = useState(false);
 
-  console.log(products);
   let available_stocks = [];
   if (products?.length > 0) {
     available_stocks = products.filter((product) => {
       return product.quantity > 0;
     });
   }
-  //  else if (products.length === 0) {
-  //   setNoProducts(true);
-  // }
-  console.log('av', available_stocks);
   useEffect(() => {
     setProducts(JSON.parse(localStorage.getItem('products')));
   }, []);
@@ -42,7 +37,7 @@ function ListProduct() {
               <tbody>
                 {available_stocks.map((product, i) => {
                   return (
-                    <tr>
+                    <tr key={i}>
                       <td>{i + 1}</td>
                       <td>{product.pCode}</td>
                       <td>{product.pName}</td>

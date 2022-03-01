@@ -36,7 +36,6 @@ function AddProductForm() {
   const addProduct = (e) => {
     try {
       e.preventDefault();
-      // console.log(products, 'pro');
       if (products?.length > 0) {
         let joined = products.concat(formValues);
         localStorage.setItem('products', JSON.stringify(joined));
@@ -72,10 +71,10 @@ function AddProductForm() {
               <tbody>
                 {formValues.map((value, index) => {
                   return (
-                    <tr key={value}>
+                    <tr key={index}>
                       <div className='form-row '>
                         <input
-                          type='text'
+                          type='number'
                           placeholder='Product code'
                           name='pCode'
                           className='form-control'
