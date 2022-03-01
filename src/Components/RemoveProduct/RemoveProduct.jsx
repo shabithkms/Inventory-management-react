@@ -36,10 +36,21 @@ function RemoveProductForm() {
       e.preventDefault();
       console.log(formValues);
       for (let key in formValues) {
-        console.log('hi');
+        // console.log('hi');
         codes.push(formValues[key].pCode);
-        console.log(codes);
+        // console.log(codes);
       }
+      let newProducts = products.filter((item) => {
+        for (let key in codes) {
+          if (item.pCode !== codes[key]) {
+            return item;
+          }
+        }
+      });
+      localStorage.setItem('products', JSON.stringify(newProducts));
+      console.log(newProducts);
+      setFormValues([proObj]);
+      toast.success('product removed');
     } catch (error) {
       console.log(error);
     }
