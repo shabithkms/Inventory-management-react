@@ -26,11 +26,12 @@ function RemoveProductForm() {
   // Function for remove product
   const removeProduct = (e) => {
     let codes = [];
+    codes.push(formValues[0].pCode);
     try {
       e.preventDefault();
       products.filter((item, index) => {
         if (item.pCode === codes[0]) {
-          if (item.quantity < formValues[0].quantity) {
+          if (item.quantity <= formValues[0].quantity) {
             products.splice(index, 1);
             setFormValues([proObj]);
             toast.success('Product removed');
@@ -39,7 +40,7 @@ function RemoveProductForm() {
             toast.success('Stock reduced');
             setFormValues([proObj]);
           }
-        } 
+        }
       });
       localStorage.setItem('products', JSON.stringify(products));
     } catch (error) {
