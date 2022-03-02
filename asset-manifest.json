@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/fingent-machine-test/static/css/main.3a99a34d.css",
+    "main.js": "/fingent-machine-test/static/js/main.07d88e24.js",
+    "index.html": "/fingent-machine-test/index.html",
+    "main.3a99a34d.css.map": "/fingent-machine-test/static/css/main.3a99a34d.css.map",
+    "main.07d88e24.js.map": "/fingent-machine-test/static/js/main.07d88e24.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3a99a34d.css",
+    "static/js/main.07d88e24.js"
+  ]
+}
